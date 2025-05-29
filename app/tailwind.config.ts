@@ -1,4 +1,4 @@
-import sharedConfig from "@typethings/tailwind-config/tailwind.config";
+import sharedConfig from "@lumia/tailwind-config/tailwind.config";
 import type { Config } from "tailwindcss";
 
 const config: Pick<Config, "presets"> = {

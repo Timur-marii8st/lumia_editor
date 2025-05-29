@@ -19,7 +19,7 @@ import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@typethings/ui";
+} from "@lumia/ui";
 
 import { useWorkspaceStore } from "@/store/workspaceStore";
 

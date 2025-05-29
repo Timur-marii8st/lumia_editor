@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { FolderIcon, FolderOpen, FolderPlus, Search, X } from "lucide-react";
 import { toast } from "sonner";
-
+import { removeDir } from "@tauri-apps/api/fs";
 import { useWorkspaceStore } from "@/store/workspaceStore";
 import {
   checkDirFile,
   readFilesFromFolder,
   selectFolder,
-} from "@typethings/functions";
-
+} from "@lumia/functions";
 import {
   Button,
   Collapsible,
@@ -21,72 +20,101 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@typethings/ui";
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@lumia/ui";
 import CreateFolder from "../folder/createFolder";
+
+interface Workspace {
+  folderName: string;
+  folderPath: string;
+  files?: unknown[];
+  createdAt?: Date;
+}
 
 interface WorkspacesProps {
   checkOption?: boolean;
 }
 
-const Workspaces = (props: WorkspacesProps) => {
+const Workspaces = ({ checkOption }: WorkspacesProps) => {
   const workspaces = useWorkspaceStore((state) => state.workspaces);
   const addWorkspace = useWorkspaceStore((state) => state.addWorkspace);
   const deleteWorkspace = useWorkspaceStore((state) => state.deleteWorkspace);
   const selectWorkspace = useWorkspaceStore((state) => state.selectWorkspace);
-  const selectedWorkspace = useWorkspaceStore(
-    (state) => state.selectedWorkspace,
-  );
+  const selectedWorkspace = useWorkspaceStore((state) => state.selectedWorkspace);
+
   const [search, setSearch] = useState<string>("");
   const [openCollapsible, setOpenCollapsible] = useState<boolean>(false);
+
+  // Confirmation dialog state
+  const [confirmOpen, setConfirmOpen] = useState<boolean>(false);
+  const [workspaceToDelete, setWorkspaceToDelete] = useState<Workspace | null>(null);
 
   const handleAddWorkspace = async () => {
     try {
       const folder = await selectFolder();
-      if (!folder) {
-        return;
-      }
-      // Check if folder is already added:
-      if (
-        workspaces
-          .map((workspace) => workspace.folderPath)
-          .includes(folder?.folderPath)
-      ) {
+      if (!folder) return;
+
+      if (workspaces.some((w) => w.folderPath === folder.folderPath)) {
         toast.error("The workspace already exists.", {
           description: `${folder.folderName} is already added as a workspace.`,
         });
         return;
       }
-      // Get files from folder:
-      const result = await readFilesFromFolder({
-        path: folder.folderPath,
-      });
-      // Add folder to workspaces:
+
+      const result = await readFilesFromFolder({ path: folder.folderPath });
       addWorkspace({
         folderName: folder.folderName,
         folderPath: folder.folderPath,
-        files: result!,
+        files: result || [],
         createdAt: new Date(),
       });
-      // Select workspace:
       selectWorkspace(folder.folderPath);
-      // Show toast:
-      toast.success(`Workspace added.`, {
+      toast.success("Workspace added.", {
         description: `You can now start working on ${folder.folderName}.`,
       });
-    } catch (error) {
+    } catch (err) {
+      console.error(err);
       toast.error("Something went wrong.");
     }
   };
 
-  const handleDeleteWorkspace = (path: string) => {
-    selectWorkspace(null);
-    deleteWorkspace(path);
+  const promptDelete = (workspace: Workspace) => {
+    setWorkspaceToDelete(workspace);
+    setConfirmOpen(true);
+  };
+
+  const confirmDelete = async () => {
+    if (!workspaceToDelete) return;
+
+    try {
+      // Physically remove folder and its contents
+      await removeDir(workspaceToDelete.folderPath, { recursive: true });
+
+      // Update store
+      deleteWorkspace(workspaceToDelete.folderPath);
+      selectWorkspace(null);
+
+      toast.success("Workspace deleted permanently.");
+    } catch (error: any) {
+      console.error(error);
+      toast.error("Failed to delete workspace.", {
+        description: error.message,
+      });
+    } finally {
+      setConfirmOpen(false);
+      setWorkspaceToDelete(null);
+    }
   };
 
   const handleSelectWorkspace = async (path: string) => {
     try {
-      const check = await checkDirFile(path);
-      if (!check) {
+      const exists = await checkDirFile(path);
+      if (!exists) {
         toast.error("Directory not found.", {
           description: `The directory ${path} was not found.`,
         });
@@ -94,7 +122,8 @@ const Workspaces = (props: WorkspacesProps) => {
         return;
       }
       selectWorkspace(path);
-    } catch (error) {
+    } catch (err) {
+      console.error(err);
       toast.error("Something went wrong.");
     }
   };
@@ -105,10 +134,7 @@ const Workspaces = (props: WorkspacesProps) => {
         <div className="flex items-center space-x-2">
           <CreateFolder
             trigger={
-              <Button
-                variant="outline"
-                className="flex w-full items-center space-x-2"
-              >
+              <Button variant="outline" className="flex w-full items-center space-x-2">
                 <FolderPlus size={16} />
                 <span>New</span>
               </Button>
@@ -135,45 +161,39 @@ const Workspaces = (props: WorkspacesProps) => {
           <Input
             autoFocus
             placeholder="Search..."
+            value={search}
             className="mt-2"
             onChange={(e) => setSearch(e.target.value)}
           />
         </CollapsibleContent>
       </Collapsible>
+
       <RadioGroup className="rounded-md border border-neutral-300 p-3 text-sm dark:border-neutral-800">
         {workspaces.length > 0 ? (
           workspaces
-            .sort()
-            .filter(
+            .slice()
+            .sort((a, b) => a.folderName.localeCompare(b.folderName))
+            .filter((w) =>
               search
-                ? (workspace) =>
-                    workspace.folderName
-                      .toLowerCase()
-                      .includes(search.toLowerCase())
-                : () => true,
+                ? w.folderName.toLowerCase().includes(search.toLowerCase())
+                : true
             )
             .map((workspace) => (
               <div
-                className="flex items-center justify-between overflow-hidden"
                 key={workspace.folderPath}
+                className="flex items-center justify-between overflow-hidden"
               >
                 <div className="flex items-center space-x-3 overflow-hidden">
-                  <div>
-                    {props.checkOption ? (
-                      <RadioGroupItem
-                        value={workspace.folderPath}
-                        id={workspace.folderPath}
-                        onClick={() =>
-                          handleSelectWorkspace(workspace.folderPath)
-                        }
-                        checked={
-                          workspace.folderPath === selectedWorkspace?.folderPath
-                        }
-                      />
-                    ) : (
-                      <FolderIcon size={16} className="text-neutral-500" />
-                    )}
-                  </div>
+                  {checkOption ? (
+                    <RadioGroupItem
+                      value={workspace.folderPath}
+                      id={workspace.folderPath}
+                      checked={workspace.folderPath === selectedWorkspace?.folderPath}
+                      onClick={() => handleSelectWorkspace(workspace.folderPath)}
+                    />
+                  ) : (
+                    <FolderIcon size={16} className="text-neutral-500" />
+                  )}
                   <label
                     htmlFor={workspace.folderPath}
                     className="truncate"
@@ -188,26 +208,48 @@ const Workspaces = (props: WorkspacesProps) => {
                       <Button
                         variant="ghost"
                         size="icon"
-                        onClick={() =>
-                          handleDeleteWorkspace(workspace.folderPath)
-                        }
+                        onClick={() => promptDelete(workspace)}
                       >
                         <X size={15} />
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent side="bottom">
-                      Close workspace
+                      Delete workspace
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
               </div>
             ))
         ) : (
-          <div className="flex flex-col justify-center space-y-2 text-center text-neutral-600 dark:border-neutral-700 dark:text-neutral-400">
+          <div className="flex flex-col justify-center space-y-2 text-center text-neutral-600 dark:text-neutral-400">
             <p>You don't have any workspaces yet.</p>
           </div>
         )}
       </RadioGroup>
+
+      {/* Confirmation Dialog */}
+      <Dialog open={confirmOpen} onOpenChange={setConfirmOpen}>
+        <DialogTrigger asChild>
+          {/* Hidden trigger; we open programmatically */}
+          <span style={{ display: "none" }} />
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Delete Workspace</DialogTitle>
+          </DialogHeader>
+          <p className="py-4">
+            Are you sure you want to permanently delete workspace "{workspaceToDelete?.folderName}" and all of its contents?
+          </p>
+          <DialogFooter>
+            <Button variant="ghost" onClick={() => setConfirmOpen(false)}>
+              Cancel
+            </Button>
+            <Button variant="destructive" onClick={confirmDelete}>
+              Delete
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

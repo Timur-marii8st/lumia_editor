@@ -4,7 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import SettingsGroup from "./settingsGroup";
 import { toast } from "sonner";
 import Avatar from "boring-avatars";
-import { Alert, Button, Input } from "@typethings/ui";
+import { Alert, Button, Input } from "@lumia/ui";
 import { User } from "lucide-react";
 
 interface iUpdateUserInputs {

@@ -158,3 +158,12 @@
   font-display: swap;
   font-style: normal;
 }
+
+@keyframes rainbow-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(255,0,128,0.7); }
+  33% { box-shadow: 0 0 8px rgba(0,255,128,0.7); }
+  66% { box-shadow: 0 0 8px rgba(128,0,255,0.7); }
+}
+.rainbow-glow {
+  animation: rainbow-glow 3s infinite alternate ease-in-out;
+}

@@ -8,10 +8,10 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@typethings/ui";
+} from "@lumia/ui";
 
 import { toast } from "sonner";
-import { deleteFile } from "@typethings/functions";
+import { deleteFile } from "@lumia/functions";
 import { useNavigate } from "react-router-dom";
 import { useWorkspaceStore } from "@/store/workspaceStore";
 

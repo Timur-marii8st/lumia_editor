@@ -6,7 +6,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@typethings/ui";
+} from "@lumia/ui";
 
 import { useTheme } from "@/providers/themeProvider";
 

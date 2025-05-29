@@ -8,7 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@typethings/ui";
+} from "@lumia/ui";
 
 // import { openFile } from "@/functions/openFile";
 

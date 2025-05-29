@@ -1,5 +1,5 @@
 {
-  "name": "@typethings/app",
+  "name": "@lumia/app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -15,11 +15,11 @@
   },
   "dependencies": {
     "@monaco-editor/react": "4.6.0",
-    "@tauri-apps/api": "1.5.0",
-    "@typethings/editor": "workspace:*",
-    "@typethings/functions": "workspace:*",
-    "@typethings/tailwind-config": "workspace:*",
-    "@typethings/ui": "workspace:*",
+    "@tauri-apps/api": "1.5.2",
+    "@lumia/editor": "workspace:*",
+    "@lumia/functions": "workspace:*",
+    "@lumia/tailwind-config": "workspace:*",
+    "@lumia/ui": "workspace:*",
     "boring-avatars": "1.10.1",
     "class-variance-authority": "0.7.0",
     "lucide-react": "0.286.0",
@@ -29,19 +29,20 @@
     "react-hotkeys-hook": "4.4.1",
     "react-router-dom": "6.16.0",
     "sonner": "1.0.3",
-    "zustand": "4.4.3"
+    "zustand": "4.4.3",
+    "framer-motion": "^11.0.0"
   },
   "devDependencies": {
     "@tauri-apps/cli": "1.5.2",
     "@typescript-eslint/eslint-plugin": "6.7.5",
     "@typescript-eslint/parser": "6.7.5",
-    "@vitejs/plugin-react": "4.1.0",
+    "@vitejs/plugin-react": "^4.2.0",
     "autoprefixer": "10.4.16",
     "eslint": "8.51.0",
     "eslint-plugin-react": "7.33.2",
     "postcss": "8.4.31",
     "tailwindcss": "3.3.3",
     "typescript": "5.2.2",
-    "vite": "4.4.11"
+    "vite": "^4.5.0"
   }
 }

@@ -4,8 +4,9 @@ import { toast } from "sonner";
 import { useWorkspaceStore } from "@/store/workspaceStore";
 import "@/styles/tiptap-code.css";
 
-import { getFileNameWithoutExtension, updateFile } from "@typethings/functions";
-import { useEditor, Menu, Editor, Extensions } from "@typethings/editor";
+
+import { getFileNameWithoutExtension, updateFile } from "@lumia/functions";
+import { useEditor, Menu, Editor, Extensions } from "@lumia/editor";
 
 import PageNavbar from "@/components/pageNavbar";
 
@@ -14,7 +15,7 @@ import {
   buttonVariants,
   TooltipStyles,
   ProseClasses,
-} from "@typethings/ui";
+} from "@lumia/ui";
 
 const ProseStyle = cn(
   "focus:outline-none outline-none",
@@ -26,7 +27,9 @@ const EditorPage = () => {
   const fileSelected = useWorkspaceStore((state) => state.selectedFile);
   const [text, setText] = useState<string | undefined>("");
   const editor = useEditor({
-    extensions: Extensions,
+    extensions: [
+      ...Extensions,
+    ],
     injectCSS: false,
     content: fileSelected?.content,
     onUpdate: ({ editor }) => {

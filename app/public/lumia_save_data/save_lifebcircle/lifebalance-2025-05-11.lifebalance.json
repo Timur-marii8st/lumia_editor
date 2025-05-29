@@ -1,0 +1,40 @@
+{
+  "sectors": [
+    {
+      "id": "s1",
+      "name": "Work",
+      "weight": 45,
+      "color": "#F9E1E6"
+    },
+    {
+      "id": "s2",
+      "name": "Family",
+      "weight": 16,
+      "color": "#E6F9E1"
+    },
+    {
+      "id": "s3",
+      "name": "Hobbies",
+      "weight": 10,
+      "color": "#E1E6F9"
+    },
+    {
+      "id": "s4",
+      "name": "Health",
+      "weight": 16,
+      "color": "#F9F1E1"
+    },
+    {
+      "id": "sector-1746945888920",
+      "name": "Education",
+      "weight": 10,
+      "color": "#aecaf4"
+    },
+    {
+      "id": "sector-1746945889140",
+      "name": "Sport",
+      "weight": 10,
+      "color": "#f24a4a"
+    }
+  ]
+}

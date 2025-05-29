@@ -1,24 +1,18 @@
-// Prevents additional console window on Windows in release, DO NOT REMOVE!!
-// #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+// Prevents additional console window on Windows in release
 #![cfg_attr(
     all(not(debug_assertions), target_os = "windows"),
     windows_subsystem = "windows"
 )]
+use anyhow::Result;
 
-use tauri::Manager;
-use window_vibrancy::{apply_vibrancy, NSVisualEffectMaterial};
-
-fn main() {
+fn main() -> Result<()> {
     tauri::Builder::default()
-        .setup(|app| {
-            let window: tauri::Window = app.get_window("main").unwrap();
-
-            #[cfg(target_os = "macos")]
-            apply_vibrancy(&window, NSVisualEffectMaterial::HudWindow, None, None)
-                .expect("Unsupported platform! 'apply_vibrancy' is only supported on macOS");
-
-            Ok(())
-        })
+        .invoke_handler(tauri::generate_handler![
+        ])
         .run(tauri::generate_context!())
-        .expect("error while running tauri application");
+        .map_err(|e| {
+            // Обработка ошибок при запуске Tauri.
+            eprintln!("Ошибка выполнения Tauri приложения: {:?}", e);
+            anyhow::Error::from(e)
+        })
 }

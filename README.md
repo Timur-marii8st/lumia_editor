@@ -37,22 +37,22 @@
 <div align="center">
 
 ![Tauri](https://img.shields.io/badge/Tauri-FFC131?style=flat&logo=Tauri&logoColor=white)
-[![GitHub actions](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fpheralb%2Ftypethings%2Fbadge%3Fref%3Dmain&style=flat)](https://actions-badge.atrox.dev/pheralb/typethings/goto?ref=main)
-![GitHub stars](https://img.shields.io/github/stars/pheralb/typethings)
-![GitHub issues](https://img.shields.io/github/issues/pheralb/typethings)
-![GitHub forks](https://img.shields.io/github/forks/pheralb/typethings)
-![GitHub license](https://img.shields.io/github/license/pheralb/typethings)
+[![GitHub actions](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fpheralb%2Flumia%2Fbadge%3Fref%3Dmain&style=flat)](https://actions-badge.atrox.dev/pheralb/lumia/goto?ref=main)
+![GitHub stars](https://img.shields.io/github/stars/pheralb/lumia)
+![GitHub issues](https://img.shields.io/github/issues/pheralb/lumia)
+![GitHub forks](https://img.shields.io/github/forks/pheralb/lumia)
+![GitHub license](https://img.shields.io/github/license/pheralb/lumia)
 ![tailwindcss](https://img.shields.io/badge/tailwindcss%20-0F172A?logo=tailwindcss&style=flat&labelColor=38bdf8&logoColor=ffffff)
 
 </div>
 
 > [!IMPORTANT]
 > This is a work-in-progress and not the finished product.
-> Typethings will be constantly updated and is not yet ready for its first release.
+> Lumia will be constantly updated and is not yet ready for its first release.
 
-## <img src="app/public/images/logo.svg" alt="Typethings logo" height="18" />&nbsp;&nbsp;Introduction
+## <img src="app/public/images/logo.svg" alt="Lumia logo" height="18" />&nbsp;&nbsp;Introduction
 
-[**Typethings**](#) is an open source markdown editor built with [Tauri](https://tauri.app) and [React](https://react.dev). It is designed to be a simple, fast and beautiful for everyone.
+[**Lumia**](#) is an open source markdown editor built with [Tauri](https://tauri.app) and [React](https://react.dev). It is designed to be a simple, fast and beautiful for everyone.
 
 - [x] Create, read, delete markdown files.
 - [x] Create and delete workspaces.
@@ -69,9 +69,9 @@
 
 |     | Platform | Version                                                                      | Download |
 | --- | -------- | ---------------------------------------------------------------------------- | -------- |
-| ☁️  | Windows  | ![GitHub releases](https://img.shields.io/github/release/pheralb/typethings) | _Soon_   |
-| ☁️  | Linux    | ![GitHub releases](https://img.shields.io/github/release/pheralb/typethings) | _Soon_   |
-| ☁️  | MacOS    | ![GitHub releases](https://img.shields.io/github/release/pheralb/typethings) | _Soon_   |
+| ☁️  | Windows  | ![GitHub releases](https://img.shields.io/github/release/pheralb/lumia) | _Soon_   |
+| ☁️  | Linux    | ![GitHub releases](https://img.shields.io/github/release/pheralb/lumia) | _Soon_   |
+| ☁️  | MacOS    | ![GitHub releases](https://img.shields.io/github/release/pheralb/lumia) | _Soon_   |
 
 ## 🚀 Getting Started
 
@@ -87,17 +87,17 @@ To get a local copy up and running, please follow these simple steps.
 
 **Setup:**
 
-1. Clone or [fork](https://github.com/pheralb/typethings/fork) this repository:
+1. Clone or [fork](https://github.com/pheralb/lumia/fork) this repository:
 
 ```bash
-git clone git@github.com:pheralb/typethings.git
+git clone git@github.com:pheralb/lumia.git
 ```
 
 2. Install dependencies:
 
 ```bash
 # Access the project folder:
-cd typethings
+cd lumia
 
 # Install dependencies:
 pnpm install
@@ -129,7 +129,7 @@ Built with:
 Built with:
 
 - [Next.js](https://nextjs.org/) - The React Framework for Production.
-- [@typethings/ui](https://github.com/pheralb/typethings/tree/main/packages/ui) - A set of accessible UI components.
+- [@lumia/ui](https://github.com/pheralb/lumia/tree/main/packages/ui) - A set of accessible UI components.
 
 ### Packages:
 
@@ -137,11 +137,11 @@ For all websites & apps:
 
 | Package                                                                                     | Description                                                                                                                                                 |
 | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [@typethings/editor](https://github.com/pheralb/typethings/tree/main/packages/editor)       | An unstyled primitives based on [Tiptap](https://tiptap.dev/) for building your custom WYSIWYG editor.                                                      |
-| [@typethings/functions](https://github.com/pheralb/typethings/tree/main/packages/functions) | A set of files/folders functions using Tauri API.                                                                                                           |
-| [@typethings/ui](https://github.com/pheralb/typethings/tree/main/packages/ui)               | A set of accessible UI components. Built with [React](https://react.dev), [shadcn/ui](https://ui.shadcn.com/) and [Tailwind CSS](https://tailwindcss.com/). |
-| [@typethings/tailwind-config](https://github.com/pheralb/typethings/tree/main/packages/ui)  | [Tailwind CSS](https://tailwindcss.com/) configuration for Typethings App.                                                                                  |
+| [@lumia/editor](https://github.com/pheralb/lumia/tree/main/packages/editor)       | An unstyled primitives based on [Tiptap](https://tiptap.dev/) for building your custom WYSIWYG editor.                                                      |
+| [@lumia/functions](https://github.com/pheralb/lumia/tree/main/packages/functions) | A set of files/folders functions using Tauri API.                                                                                                           |
+| [@lumia/ui](https://github.com/pheralb/lumia/tree/main/packages/ui)               | A set of accessible UI components. Built with [React](https://react.dev), [shadcn/ui](https://ui.shadcn.com/) and [Tailwind CSS](https://tailwindcss.com/). |
+| [@lumia/tailwind-config](https://github.com/pheralb/lumia/tree/main/packages/ui)  | [Tailwind CSS](https://tailwindcss.com/) configuration for Lumia App.                                                                                  |
 
 ## 📝 License
 
-- [Apache License 2.0](https://github.com/pheralb/typethings/blob/main/LICENSE).
+- [Apache License 2.0](https://github.com/pheralb/lumia/blob/main/LICENSE).

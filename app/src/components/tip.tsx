@@ -4,7 +4,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@typethings/ui";
+} from "@lumia/ui";
 
 interface TipProps {
   text: string;

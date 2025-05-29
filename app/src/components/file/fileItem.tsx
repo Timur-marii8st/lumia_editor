@@ -2,11 +2,11 @@ import type { FileEntry } from "@tauri-apps/api/fs";
 import { appWindow } from "@tauri-apps/api/window";
 
 import { useState } from "react";
-import { cn } from "@typethings/ui";
+import { cn } from "@lumia/ui";
 import { BookOpen, Trash } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { readFile, getFileNameWithoutExtension } from "@typethings/functions";
+import { readFile, getFileNameWithoutExtension } from "@lumia/functions";
 import DeleteFile from "./deleteFile";
 
 // From Sidebar (shared classes & icon size):
@@ -23,7 +23,7 @@ import {
   ContextMenuContent,
   ContextMenuItem,
   ContextMenuTrigger,
-} from "@typethings/ui";
+} from "@lumia/ui";
 import { useWorkspaceStore } from "@/store/workspaceStore";
 
 interface iFileItemProps extends FileEntry {
@@ -51,7 +51,7 @@ const FileItem = (props: iFileItemProps) => {
       });
       router("/editor");
       appWindow.setTitle(
-        `${getFileNameWithoutExtension(props.name!)} - Typethings`,
+        `${getFileNameWithoutExtension(props.name!)} - Lumia`,
       );
     } catch (error) {
       console.error(error);

@@ -1,4 +1,4 @@
-import { FileEntry } from "@typethings/functions";
+import { FileEntry } from "@lumia/functions";
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 

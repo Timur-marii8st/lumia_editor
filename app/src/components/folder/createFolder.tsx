@@ -10,73 +10,117 @@ import {
   FormGroup,
   DialogFooter,
   Button,
-} from "@typethings/ui";
+} from "@lumia/ui";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { createFolder } from "@typethings/functions";
+import { createFolder } from "@lumia/functions";
 import { useWorkspaceStore } from "@/store/workspaceStore";
 import { toast } from "sonner";
 
-interface iCreateFolderProps {
+interface CreateFolderProps {
   trigger: ReactNode;
 }
 
-interface iCreateFolderInputs {
+interface CreateFolderInputs {
   title: string;
 }
 
-const CreateFolder = (props: iCreateFolderProps) => {
-  const { register, handleSubmit } = useForm<iCreateFolderInputs>();
-  const [open, setOpen] = useState<boolean>(false);
+const CreateFolder = ({ trigger }: CreateFolderProps): JSX.Element => {
+  const { register, handleSubmit, reset } = useForm<CreateFolderInputs>();
+  const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const workspaces = useWorkspaceStore((state) => state.workspaces);
   const addWorkspace = useWorkspaceStore((state) => state.addWorkspace);
 
-  const handleCreateFolder: SubmitHandler<iCreateFolderInputs> = async (
-    data,
-  ) => {
+  const forbiddenChars = /[\\/:*?"<>|' ]/;
+
+  const handleCreateFolder: SubmitHandler<CreateFolderInputs> = async (data) => {
+    setIsLoading(true);
+
+    // Check for forbidden characters first
+    if (forbiddenChars.test(data.title)) {
+      toast.error("Invalid title.", {
+        description:
+          "Title cannot contain special characters like \\ / : * ? \" < > | ' or spaces.",
+      });
+      setIsLoading(false);
+      return;
+    }
+
+    // Check for duplicate workspace name
+    if (workspaces.some((ws) => ws.folderName === data.title)) {
+      toast.error("Folder already exists.");
+      setIsLoading(false);
+      return;
+    }
+
     try {
-      if (workspaces.some((workspace) => workspace.folderName === data.title)) {
-        toast.error(`Folder already exists.`);
-        return;
+      const result = await createFolder(data.title);
+      if (!result?.directory) {
+        throw new Error("No directory returned from createFolder");
       }
-      const create = await createFolder(data.title);
+
       addWorkspace({
         folderName: data.title,
-        folderPath: create?.directory!,
+        folderPath: result.directory,
         files: [],
         createdAt: new Date(),
       });
-      setOpen(false);
-      toast.success(`Folder created successfully.`, {
-        description: `Created on ${create?.directory!}.`,
+
+      toast.success("Folder created successfully.", {
+        description: `Created at ${result.directory}`,
       });
-    } catch (error) {
-      console.log(error);
-      toast.success(`An error occurred.`);
+
+      reset();
+      setOpen(false);
+    } catch (error: any) {
+      console.error("Create folder error:", error);
+      toast.error("An error occurred while creating the folder.", {
+        description: error.message || undefined,
+      });
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>{props.trigger}</DialogTrigger>
+    <Dialog open={open} onOpenChange={(isOpen) => {
+      setOpen(isOpen);
+      if (!isOpen) reset();
+    }}>
+      <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>New workspace</DialogTitle>
+          <DialogTitle>New Workspace</DialogTitle>
           <DialogDescription>
-            A folder will be created in your system documents folder.
+            A folder will be created inside your system documents folder.
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleSubmit(handleCreateFolder)}>
+
+        <form onSubmit={handleSubmit(handleCreateFolder)} className="space-y-4">
           <FormGroup>
             <label htmlFor="title">Folder name:</label>
-            <Input id="title" {...register("title", { required: true })} />
+            <Input
+              id="title"
+              disabled={isLoading}
+              {...register("title", { required: "Folder name is required" })}
+            />
           </FormGroup>
+
+          <DialogFooter>
+            <Button
+              variant="ghost"
+              type="button"
+              onClick={() => setOpen(false)}
+              disabled={isLoading}
+            >
+              Cancel
+            </Button>
+            <Button type="submit" disabled={isLoading}>
+              {isLoading ? "Creating..." : "Create"}
+            </Button>
+          </DialogFooter>
         </form>
-        <DialogFooter>
-          <Button variant="ghost" onClick={() => setOpen(false)}>
-            Cancel
-          </Button>
-          <Button type="submit">Create</Button>
-        </DialogFooter>
       </DialogContent>
     </Dialog>
   );

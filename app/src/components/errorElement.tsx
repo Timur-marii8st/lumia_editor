@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { useRouteError } from "react-router-dom";
 import { exit, relaunch } from "@tauri-apps/api/process";
 
-import { Button, buttonVariants, ExternalLink } from "@typethings/ui";
+import { Button, buttonVariants, ExternalLink } from "@lumia/ui";
 import { AlertTriangle, ArrowUpRight, LogOut, RefreshCw } from "lucide-react";
 
-import { type OSInfo, getOSInfo } from "@typethings/functions";
+import { type OSInfo, getOSInfo } from "@lumia/functions";
 
 const ErrorElement = () => {
   const error = useRouteError() as any;
@@ -75,7 +75,7 @@ const ErrorElement = () => {
               className={buttonVariants({
                 className: "flex w-full items-center space-x-2",
               })}
-              href="https://github.com/pheralb/typethings/issues/new"
+              href="https://github.com/pheralb/lumia/issues/new"
             >
               <span>Report</span>
               <ArrowUpRight size={16} />

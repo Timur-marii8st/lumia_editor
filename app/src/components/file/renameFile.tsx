@@ -5,7 +5,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@typethings/ui";
+} from "@lumia/ui";
 
 const RenameFile = () => {
 

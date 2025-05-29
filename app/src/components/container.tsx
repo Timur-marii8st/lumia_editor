@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { cn } from "@typethings/ui";
+import { cn } from "@lumia/ui";
 
 interface ContainerProps {
   children: ReactNode;

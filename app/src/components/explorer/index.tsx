@@ -1,5 +1,5 @@
 import { useWorkspaceStore } from "@/store/workspaceStore";
-import { Button } from "@typethings/ui";
+import { Button } from "@lumia/ui";
 
 import Folder from "@/components/folder";
 import ManageWorkspaces from "@/components/workspaces/manageWorkspaces";

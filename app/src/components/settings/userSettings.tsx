@@ -1,4 +1,4 @@
-import { buttonVariants, cn } from "@typethings/ui";
+import { buttonVariants, cn } from "@lumia/ui";
 import { useUserStore } from "@/store/userStore";
 import { Settings } from "lucide-react";
 import {
@@ -17,7 +17,7 @@ const UserSettings = () => {
     <Link
       to="/settings"
       onClick={() => {
-        appWindow.setTitle(`Inbox - Typethings`);
+        appWindow.setTitle(`Inbox - Lumia`);
       }}
       className={cn(
         buttonVariants({ variant: "ghost" }),

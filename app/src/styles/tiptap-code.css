@@ -65,4 +65,67 @@
       font-weight: 900;
     }
   }
+
+  table {
+    border-collapse: collapse;
+    margin: 1em 0;
+    width: 100%;
+    table-layout: fixed;
+    overflow: hidden;
+  }
+
+  th,
+  td {
+    border: 1px solid #888; /* Используйте var(--border) для соответствия теме */
+    padding: 8px;
+    vertical-align: top;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  th {
+    font-weight: bold;
+    background-color: #f1f3f5; /* Используйте var(--muted) или var(--secondary) */
+    text-align: left;
+    color: currentColor; /* Или var(--foreground) / var(--secondary-foreground) */
+  }
+
+  /* Стили для маркеров изменения размера */
+  .column-resize-handle {
+    position: absolute;
+    right: -2px;
+    top: 0;
+    bottom: -2px;
+    width: 4px;
+    background-color: #adf; /* Можно использовать var(--primary) или var(--accent) */
+    pointer-events: none;
+    cursor: col-resize;
+    z-index: 20;
+  }
+
+  /* Стили для выделения ячеек */
+  .selectedCell:after {
+      z-index: 2;
+      position: absolute;
+      content: "";
+      left: 0; right: 0; top: 0; bottom: 0;
+      background: rgba(200, 200, 255, 0.4); /* Можно настроить цвет */
+      pointer-events: none;
+  }
+  /* === КОНЕЦ ДОБАВЛЕННЫХ СТИЛЕЙ === */
+}
+
+/* Курсор для всего редактора во время ресайза (можно оставить снаружи .tiptap, если нужно) */
+.resize-cursor { /* Вероятно, этот класс добавляется к body или самому редактору */
+  cursor: col-resize !important; /* !important может понадобиться для перекрытия других стилей */
+}
+
+/* Можно добавить стили для темной темы */
+.dark .tiptap th {
+   background-color: #2d2d2d; /* Пример для темной темы, подберите под свои var() */
+   border-color: #555;       /* Пример для темной темы */
+}
+
+.dark .tiptap td {
+   border-color: #555;       /* Пример для темной темы */
 }

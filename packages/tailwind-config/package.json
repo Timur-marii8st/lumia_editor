@@ -1,14 +1,21 @@
 {
-  "name": "@typethings/tailwind-config",
-  "description": "Tailwind CSS Config for Typethings",
+  "name": "@lumia/tailwind-config",
+  "description": "Tailwind CSS Config for Lumia",
   "version": "0.1.0",
   "main": "index.ts",
   "types": "index.ts",
-  "author": "@pheralb_",
-  "homepage": "https://typethings.vercel.app",
+  "contributors": [
+  {
+    "name": "@pheralb_"
+  },
+  {
+    "name": "marii8st"
+  }
+  ],
+  "homepage": "https://lumia.vercel.app",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pheralb/typethings.git"
+    "url": "git+https://github.com/pheralb/lumia.git"
   },
   "dependencies": {
     "@tailwindcss/nesting": "0.0.0-insiders.565cd3e",

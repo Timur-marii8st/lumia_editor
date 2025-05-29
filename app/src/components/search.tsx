@@ -11,7 +11,7 @@ import {
   CommandItem,
   CommandList,
   cn,
-} from "@typethings/ui";
+} from "@lumia/ui";
 import {
   SidebarItemClasses,
   SidebarItemIconSize,
@@ -35,7 +35,7 @@ import {
   readFile,
   getFolderName,
   getFileNameWithoutExtension,
-} from "@typethings/functions";
+} from "@lumia/functions";
 
 import { useWorkspaceStore } from "@/store/workspaceStore";
 import { useTheme } from "@/providers/themeProvider";
@@ -85,7 +85,7 @@ const Search = () => {
       });
       router("/editor");
       appWindow.setTitle(
-        `${getFileNameWithoutExtension(filepath)} - Typethings`,
+        `${getFileNameWithoutExtension(filepath)} - Lumia`,
       );
     } catch (error) {
       console.error(error);
@@ -168,7 +168,7 @@ const Search = () => {
                   value="Inbox Page"
                   onSelect={() => {
                     setOpen(false);
-                    appWindow.setTitle(`Inbox - Typethings`);
+                    appWindow.setTitle(`Inbox - Lumia`);
                     router("/");
                   }}
                 >
@@ -180,7 +180,7 @@ const Search = () => {
                   value="Settings Page"
                   onSelect={() => {
                     setOpen(false);
-                    appWindow.setTitle(`Settings - Typethings`);
+                    appWindow.setTitle(`Settings - Lumia`);
                     router("/settings");
                   }}
                 >
@@ -192,7 +192,7 @@ const Search = () => {
                 <CommandItem
                   className={sharedCommandItemStyles}
                   value="website"
-                  onSelect={() => openLink("https://typethings.vercel.app")}
+                  onSelect={() => openLink("https://lumia.vercel.app")}
                 >
                   <Link2Icon size={iconSize} />
                   <span>Website</span>
@@ -201,7 +201,7 @@ const Search = () => {
                   className={sharedCommandItemStyles}
                   value="github repo"
                   onSelect={() =>
-                    openLink("https://github.com/pheralb/typethings")
+                    openLink("https://github.com/pheralb/lumia")
                   }
                 >
                   <Github size={iconSize} />
@@ -211,7 +211,7 @@ const Search = () => {
                   className={sharedCommandItemStyles}
                   value="github bug"
                   onSelect={() =>
-                    openLink("https://github.com/pheralb/typethings/issues/new")
+                    openLink("https://github.com/pheralb/lumia/issues/new")
                   }
                 >
                   <Bug size={iconSize} />

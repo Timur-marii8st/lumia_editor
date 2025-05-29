@@ -1,6 +1,13 @@
 {
-  "name": "@typethings/functions",
-  "author": "@pheralb_",
+  "name": "@lumia/functions",
+  "contributors": [
+  {
+    "name": "@pheralb_"
+  },
+  {
+    "name": "marii8st"
+  }
+  ],
   "description": "A framework agnostic library to manage files and folders using Tauri API",
   "version": "0.1.0",
   "license": "MIT",
@@ -21,13 +28,13 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@tauri-apps/api": "1.5.0"
+    "@tauri-apps/api": "1.5.2"
   },
   "devDependencies": {
     "tsup": "7.2.0",
     "typescript": "5.1.6"
   },
   "peerDependencies": {
-    "@tauri-apps/api": "^1.5.0"
+    "@tauri-apps/api": "^1.5.2"
   }
 }

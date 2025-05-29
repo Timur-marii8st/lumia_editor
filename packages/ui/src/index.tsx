@@ -19,6 +19,11 @@ export * from "./components/popover";
 export * from "./components/radio-group";
 export * from "./components/tooltip";
 export * from "./components/tabs";
+export * from "./components/scrollarea";
+export * from "./components/avatar";
+export * from "./components/avatarfallback";
+export * from "./components/textarea";
+
 
 // Extend Config:
 export { ProseClasses } from "./extend/prose";

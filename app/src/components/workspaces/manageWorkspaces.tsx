@@ -7,7 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@typethings/ui";
+} from "@lumia/ui";
 
 import Workspaces from "@/components/workspaces";
 
@@ -23,8 +23,8 @@ const ManageWorkspaces = (props: ManageWorkspacesProps) => {
         <DialogHeader>
           <DialogTitle>Manage workspaces</DialogTitle>
           <DialogDescription>
-            A workspace is a system folder. Here you can add and remove
-            workspaces. Close a workspace does not delete the folder.
+            A workspace is a system folder. Here you can add and delete
+            workspaces.
           </DialogDescription>
         </DialogHeader>
         <Workspaces checkOption={false} />

@@ -1,4 +1,4 @@
-import { cn } from "@typethings/ui";
+import { cn } from "@lumia/ui";
 
 export const SidebarItemClasses = cn("w-full justify-start text-sm px-2 group");
 export const SidebarLinkActiveClasses = cn(

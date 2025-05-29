@@ -1,10 +1,21 @@
 {
-  "name": "@typethings/workspace",
-  "author": "@pheralb_",
+  "name": "@lumia/workspace",
+  "contributors": [
+  {
+    "name": "@pheralb_"
+  },
+  {
+    "name": "marii8st"
+  }
+  ],
+  
   "type": "module",
   "description": "A beautiful, minimal, and fast text editor built with Tauri.",
   "private": true,
   "packageManager": "pnpm@8.6.10",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "typecheck-app": "cd app && pnpm typecheck",
     "typecheck-editor": "cd packages/editor && pnpm typecheck",
@@ -16,14 +27,41 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
+    "@lumia/tailwind-config": "workspace:*",
     "@turbo/gen": "1.10.15",
     "@types/node": "20.8.3",
     "@types/react": "18.2.25",
     "@types/react-dom": "18.2.11",
-    "@typethings/tailwind-config": "workspace:*",
+    "@types/three": "0.152.1",
     "eslint": "8.51.0",
     "prettier": "3.0.3",
     "prettier-plugin-tailwindcss": "0.5.5",
     "turbo": "latest"
+  },
+  "dependencies": {
+    "@fullcalendar/daygrid": "^6.1.17",
+    "@fullcalendar/interaction": "^6.1.17",
+    "@fullcalendar/list": "^6.1.17",
+    "@fullcalendar/react": "^6.1.17",
+    "@fullcalendar/timegrid": "^6.1.17",
+    "@lmstudio/sdk": "^1.1.1",
+    "@react-three/drei": "9.74.5",
+    "@react-three/fiber": "8.13.3",
+    "@tauri-apps/api": "1.5.2",
+    "@tiptap/core": "^2.12.0",
+    "@tiptap/extension-image": "^2.12.0",
+    "@tiptap/extension-table": "2.1.12",
+    "@tiptap/extension-table-cell": "2.1.12",
+    "@tiptap/extension-table-header": "2.1.12",
+    "@tiptap/extension-table-row": "2.1.12",
+    "@tiptap/pm": "2.7.0",
+    "date-fns": "^4.1.0",
+    "konva": "8.4.3",
+    "react-konva": "18.2.10",
+    "react-virtuoso": "^4.12.7",
+    "react-zoom-pan-pinch": "^3.7.0",
+    "three": "0.168.0",
+    "three-spritetext": "^1.9.6",
+    "troika-three-text": "^0.52.4"
   }
 }

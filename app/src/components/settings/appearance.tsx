@@ -1,7 +1,7 @@
 import { Check, Monitor, Moon, Paintbrush, Sun } from "lucide-react";
 import SettingsGroup from "./settingsGroup";
 import { useTheme } from "@/providers/themeProvider";
-import { Button } from "@typethings/ui";
+import { Button } from "@lumia/ui";
 
 const Appearance = () => {
   const { theme, setTheme } = useTheme();

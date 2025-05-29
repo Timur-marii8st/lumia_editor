@@ -1,7 +1,14 @@
 {
-  "name": "@typethings/ui",
-  "author": "@pheralb_",
-  "description": "Typethings UI library built with React, Tailwind CSS and shadcn/ui",
+  "name": "@lumia/ui",
+  "contributors": [
+  {
+    "name": "@pheralb_"
+  },
+  {
+    "name": "marii8st"
+  }
+  ],
+  "description": "Lumia UI library built with React, Tailwind CSS and shadcn/ui",
   "version": "0.1.0",
   "license": "MIT",
   "sideEffects": false,
@@ -9,8 +16,7 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist/**"
-  ],
+    "dist/**"],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -48,7 +54,8 @@
     "tailwindcss": "3.3.3",
     "tailwindcss-animate": "1.0.7",
     "tsup": "7.2.0",
-    "typescript": "5.2.2"
+    "typescript": "5.2.2",
+    "@lumia/tailwind-config": "workspace:*"
   },
   "peerDependencies": {
     "react": "^18.2.0"

@@ -1,6 +1,13 @@
 {
-  "name": "@typethings/editor",
-  "author": "@pheralb_",
+  "name": "@lumia/editor",
+  "contributors": [
+  {
+    "name": "@pheralb_"
+  },
+  {
+    "name": "marii8st"
+  }
+  ],
   "description": "A WYSIWYG markdown editor built with React, Tailwind CSS & Tiptap",
   "version": "0.1.0",
   "license": "MIT",
@@ -33,10 +40,11 @@
     "@tiptap/extension-table-header": "2.1.12",
     "@tiptap/extension-table-row": "2.1.12",
     "@tiptap/extension-text-style": "2.1.7",
-    "@tiptap/pm": "2.1.7",
+    "@tiptap/pm": "2.7.0",
     "@tiptap/react": "2.1.7",
     "@tiptap/starter-kit": "2.1.7",
     "clsx": "2.0.0",
+    "framer-motion": "^11.0.0",
     "highlight.js": "11.9.0",
     "lowlight": "3.1.0",
     "lucide-react": "0.271.0",

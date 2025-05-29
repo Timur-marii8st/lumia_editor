@@ -1,4 +1,4 @@
-import type { FileEntry } from "@typethings/functions";
+import type { FileEntry } from "@lumia/functions";
 import FileItem from "./fileItem";
 
 interface iFileListProps {
