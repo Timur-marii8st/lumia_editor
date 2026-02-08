@@ -21,6 +21,7 @@ import ChatPage from "@/components/pages/chat";
 import MiaChat from "@/components/miachat/miaChat";
 import CalendarPage from "@/components/pages/CalendarPage";
 import VisualSpace from "@/components/pages/visualSpace";
+import { BlockEditorPage } from "@/components/pages/blockEditor";
 
 // Router configuration
 const router = createBrowserRouter([
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: "settings", element: <Settings /> },
       { path: "editor", element: <Editor /> },
+      { path: "block-editor", element: <BlockEditorPage /> },
       { path: "chat", element: <ChatPage /> },
       { path: "mia-chat", element: <MiaChat /> },
       { path: "calendar", element: <CalendarPage /> },

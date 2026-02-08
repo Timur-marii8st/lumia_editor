@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useNavigate, useLocation, Link, Outlet } from "react-router-dom";
 import { getCurrent } from "@tauri-apps/api/window";
 import { cn, Button, buttonVariants } from "@lumia/ui";
-import { Plus, Folders, Home, Sparkles, Calendar, Layout } from "lucide-react";
+import { Plus, Folders, Home, Sparkles, Calendar, Layout, FileText } from "lucide-react";
 import { useAppStore } from "@/store/appStore";
 
 import Search from "@/components/search";
@@ -131,6 +131,21 @@ const Sidebar: React.FC = () => {
                 <div className="flex items-center space-x-3 transition">
                   <Layout size={SidebarItemIconSize} />
                   <span>Visual Space</span>
+                </div>
+              </Link>
+
+              <Link
+                to="/block-editor"
+                onClick={() => appWindow.setTitle("Block Editor - Lumia")}
+                className={cn(
+                  buttonVariants({ variant: "ghost" }),
+                  SidebarItemClasses,
+                  route.pathname === "/block-editor" ? SidebarLinkActiveClasses : ""
+                )}
+              >
+                <div className="flex items-center space-x-3 transition">
+                  <FileText size={SidebarItemIconSize} />
+                  <span>Block Editor</span>
                 </div>
               </Link>
 

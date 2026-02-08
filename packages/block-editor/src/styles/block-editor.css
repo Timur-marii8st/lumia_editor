@@ -1,0 +1,61 @@
+/* Block Editor Styles */
+
+/* Force LTR direction for all contentEditable elements */
+[contenteditable] {
+  direction: ltr !important;
+  unicode-bidi: embed;
+  text-align: left;
+}
+
+/* Placeholder styles for contentEditable */
+[contenteditable][data-placeholder]:empty:before {
+  content: attr(data-placeholder);
+  color: #9ca3af;
+  pointer-events: none;
+  position: absolute;
+}
+
+[contenteditable]:focus {
+  outline: none;
+}
+
+/* Smooth transitions */
+.block-editor * {
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+/* Scrollbar styles */
+.block-editor::-webkit-scrollbar {
+  width: 8px;
+}
+
+.block-editor::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.block-editor::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+.block-editor::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Dark mode scrollbar */
+.dark .block-editor::-webkit-scrollbar-thumb {
+  background: #4b5563;
+}
+
+.dark .block-editor::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+/* Selection styles */
+::selection {
+  background-color: rgba(59, 130, 246, 0.3);
+}
+
+.dark ::selection {
+  background-color: rgba(59, 130, 246, 0.5);
+}
